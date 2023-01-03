@@ -1,0 +1,21 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="restproject.urls.settings" />
+          <option value="restapp.views.UserSerializer" />
+          <option value="credential.views.User" />
+          <option value="django.contrib.auth.models.User" />
+          <option value="django.contrib.auth.User" />
+          <option value="credential.views.render_to_response" />
+          <option value="credential.views.authLogin" />
+          <option value="school_store_app.models.Course" />
+          <option value="school_store_app.models.Department" />
+          <option value="finalapp.forms.PersonCreateForm" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

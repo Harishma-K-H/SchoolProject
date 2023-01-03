@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <style>
+                body
+{
+  font-family:sans-serif;
+  background: -webkit-linear-gradient(to right, #155799, #159957);
+  background: linear-gradient(to right, #155799, #159957);
+  color:whitesmoke;
+}
+
+         form{
+    width:35rem;
+    margin: auto;
+    color:black;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(330, 222, 324, 0.582);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 20px 25px;
+}
+h1{
+    text-align: center;
+}
+input[type=text]{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 9px 12px;
+    box-sizing: border-box;
+  }
+<!--button {-->
+<!--    background-color: #030804;-->
+<!--    color: white;-->
+<!--    padding: 14px 20px;-->
+<!--    border-radius: 5px;-->
+<!--    margin: 7px 0;-->
+<!--    width: 100%;-->
+<!--    font-size: 18px;-->
+<!--  }-->
+
+<!--button:hover {-->
+<!--    opacity: 0.6;-->
+<!--    cursor: pointer;-->
+<!--}-->
+
+.headingsContainer{
+    text-align: center;
+}
+
+.headingsContainer p{
+    color: red;
+}
+<!--.mainContainer{-->
+<!--    padding: 20px;-->
+
+
+<!--}-->
+
+.headd{
+color:black;
+}
+
+
+<!--  /* Media queries for the responsiveness of the page */-->
+<!--  @media screen and (max-width: 600px) {-->
+<!--    form{-->
+<!--      width: 25rem;-->
+<!--    }-->
+<!--  }-->
+
+<!--  @media screen and (max-width: 400px) {-->
+<!--    form{-->
+<!--      width: 20rem;-->
+<!--    }-->
+<!--  }-->
+
+     </style>
+
+
+    <title>Dependent Dropdown in Django</title>
+     <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+<h1 class="headd">Application Form</h1>
+<div class="headingsContainer">
+<!--            <h3>Personal Application Form</h3>-->
+            <p>Fill the Application with your genuine informations.</p>
+        </div>
+{% if submitted %}
+
+Your Application is Submitted Successfully!!!
+<a href="{% url 'dropdownapp:index' %}">GoTo Home</a>
+{% else %}
+
+    <form method="post" id="personForm" data-courses-url="{% url 'dropdownapp:ajax_load_courses' %}">
+        {% csrf_token %}
+    <div class="mainContainer">
+
+        {{ form.as_p}}
+
+
+
+        <input type="submit" value="Submit" class="btn btn-secondary">
+        <div>
+    </form>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#personForm").attr("data-courses-url");
+        const departmentId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'department_id': departmentId
+            },
+            success: function (data) {
+                console.log(data)
+<!--               $("#id_course").html(data);-->
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (course) {
+                    html_data += `<option value="${course.id}">${course.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_course").html(html_data);
+
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

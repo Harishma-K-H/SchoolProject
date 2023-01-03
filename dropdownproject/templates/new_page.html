@@ -1,0 +1,49 @@
+<html>
+<head>
+      <style>
+                body
+{
+  font-family:sans-serif;
+  background: -webkit-linear-gradient(to right, #155799, #159957);
+  background: linear-gradient(to right, #155799, #159957);
+  color:whitesmoke;
+}
+
+         form{
+    width:35rem;
+    margin: auto;
+    color:black;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(330, 222, 324, 0.582);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 20px 25px;
+}
+button {
+    background-color: #030804;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 15px;
+    margin: 8px 110;
+    width: 50%;
+    font-size: 16px;
+  }
+  button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<!--  <input type="submit" value="FORM" class="btn btn-success">-->
+    <a class="btn btn-secondary" href="{% url 'dropdownapp:person_add' %}">Click</a>
+<!--    <a class="btn btn-secondary" href="{% url 'dropdownapp:person_add' %}">Form</a>-->
+</form>
+</body>
+</html>
